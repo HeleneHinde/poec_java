@@ -2,9 +2,8 @@ package garage;
 
 public class MainGarage {
     public static void main(String[] args) {
-        Garage garage = new Garage();
-        
 
+        Garage garage = new Garage();
 
         Voiture voiture1 = new Voiture();
         voiture1.setMarque("Toyota");
@@ -17,6 +16,8 @@ public class MainGarage {
         garage.addVoiture(voiture2);
 
         System.out.println("Le garage possède " + garage.getVoitures().length + " voitures.");
+
+        
 
     }
 }
