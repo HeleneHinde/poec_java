@@ -6,7 +6,7 @@ public class Tache {
     private String[] steps;
     private StatusTache status;
     private Alarme alarme;
-    final private int stepsLength = 10;
+    private final static int STEPSLENGTH = 10;
 
     public Tache() {
     }
@@ -24,7 +24,7 @@ public class Tache {
     }
 
     public void setSteps(String[] steps) {
-        if (steps.length > stepsLength) {
+        if (steps.length > STEPSLENGTH) {
             throw new IllegalArgumentException("Le nombre d'étapes ne peut pas dépasser 10.");
         } else {
             this.steps = steps;

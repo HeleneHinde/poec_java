@@ -9,8 +9,8 @@ public class Planification {
 
     private Tache[] taches;
     private Alarme[] alarmes;
-    final private int tachesLength = 20;
-    final private int alarmesLength = 5;
+    private final static int TACHESLENGTH = 20;
+    private final static int ALARMELENGTH = 5;
 
     public Planification() {
     }
@@ -25,9 +25,9 @@ public class Planification {
 
     public Tache createTache(String title, String[] steps) {
         if (taches == null) {
-            taches = new Tache[tachesLength];
+            taches = new Tache[TACHESLENGTH];
         }
-        for (int i = 0; i < tachesLength; i++) {
+        for (int i = 0; i < TACHESLENGTH; i++) {
             if (taches[i] == null) {
                 Tache tache = new Tache();
                 tache.setTitle(title);
@@ -42,9 +42,9 @@ public class Planification {
 
     public Alarme createAlarme(DateFormat date, DateFormat heure, Status status, Couleur couleur) {
         if (this.alarmes == null) {
-            this.alarmes = new Alarme[alarmesLength];
+            this.alarmes = new Alarme[ALARMELENGTH];
         }
-        for (int i = 0; i < alarmesLength; i++) {
+        for (int i = 0; i < ALARMELENGTH; i++) {
             if (alarmes[i] == null) {
                 Alarme alarme = new Alarme();
                 alarme.setDate(date);
