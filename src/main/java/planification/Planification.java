@@ -4,11 +4,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import planification.events.StatusTache;
+import planification.events.Tache;
+
 
 public class Planification {
 
     private Tache[] taches;
-    private Alarme[] alarmes;
+    private IAlarme[] alarmes;
     private final static int TACHESLENGTH = 20;
     private final static int ALARMELENGTH = 5;
 
@@ -19,7 +22,7 @@ public class Planification {
         return taches;
     }
 
-    public Alarme[] getAlarmes() {
+    public IAlarme[] getAlarmes() {
         return alarmes;
     }
 
@@ -40,7 +43,7 @@ public class Planification {
         throw new IllegalStateException("Le nombre maximum de tâches a été atteint.");
     }
 
-    public Alarme createAlarme(DateFormat date, DateFormat heure, Status status, Couleur couleur) {
+    public IAlarme createAlarme(DateFormat date, DateFormat heure, Status status, Couleur couleur) {
         if (this.alarmes == null) {
             this.alarmes = new Alarme[ALARMELENGTH];
         }
@@ -58,7 +61,7 @@ public class Planification {
         throw new IllegalStateException("Le nombre maximum d'alarmes a été atteint.");
     }
 
-    public void associateAlarmeToTache(Alarme alarme, Tache tache) {
+    public void associateAlarmeToTache(IAlarme alarme, Tache tache) {
         if (alarme == null || tache == null) {
             throw new IllegalArgumentException("L'alarme et la tâche doivent être non nulles.");
         }
@@ -66,11 +69,11 @@ public class Planification {
         tache.setAlarme(alarme);
     }
 
-    public void dissociateAlarmeFromTache(Alarme alarme, Tache tache) {
+    public void dissociateAlarmeFromTache(IAlarme alarme, Tache tache) {
         if (alarme == null || tache == null) {
             throw new IllegalArgumentException("L'alarme et la tâche doivent être non nulles.");
         }
-        alarme.tacheRemove();
+        alarme.eventRemove();
         tache.removeAlarme();
     }
 
@@ -91,7 +94,7 @@ public class Planification {
         // Simulateur de temps pour les alarmes
         for (DateFormat date : dates) {
             for (DateFormat heure : heures) {
-                for (Alarme alarme : alarmes) {
+                for (IAlarme alarme : alarmes) {
                     if (null != alarme && alarme.getDate().equals(date) && alarme.getHeure().equals(heure)) {
                         alarme.ring();
                     } else {

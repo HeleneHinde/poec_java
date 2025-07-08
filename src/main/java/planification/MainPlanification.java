@@ -2,6 +2,8 @@ package planification;
 
 import java.text.SimpleDateFormat;
 
+import planification.events.Tache;
+
 public class MainPlanification {
 
     public static void main(String[] args) {
@@ -12,7 +14,7 @@ public class MainPlanification {
         Tache tache = planification.createTache("Ma Tâche", steps);
 
         // Création d'une alarme
-        Alarme alarme = planification.createAlarme(new SimpleDateFormat("2023-10-01"), new SimpleDateFormat("12:00"),
+        IAlarme alarme = planification.createAlarme(new SimpleDateFormat("2023-10-01"), new SimpleDateFormat("12:00"),
                 Status.ACTIVE, Couleur.rouge);
 
         // Association de l'alarme à la tâche
