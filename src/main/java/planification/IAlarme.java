@@ -2,7 +2,7 @@ package planification;
 
 import java.text.DateFormat;
 
-import planification.events.Tache;
+import planification.events.Event;
 
 public interface IAlarme {
 
@@ -14,9 +14,9 @@ public interface IAlarme {
 
     public void setHeure(DateFormat heure);
 
-    public Tache getTache();
+    public Event getEvent();
 
-    public void setTache(Tache tache);
+    public void setEvent(Event tache);
 
     public Status getStatus();
 

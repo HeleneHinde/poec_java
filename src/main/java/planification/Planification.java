@@ -65,7 +65,7 @@ public class Planification {
         if (alarme == null || tache == null) {
             throw new IllegalArgumentException("L'alarme et la tâche doivent être non nulles.");
         }
-        alarme.setTache(tache);
+        alarme.setEvent(tache);
         tache.setAlarme(alarme);
     }
 

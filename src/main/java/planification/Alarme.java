@@ -2,7 +2,7 @@ package planification;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
+import planification.events.Event;
 import planification.events.StatusTache;
 import planification.events.Tache;
 
@@ -12,7 +12,7 @@ public class Alarme implements IAlarme {
     private DateFormat heure = new SimpleDateFormat("HH:mm");
     private Status status;
     private Couleur couleur;
-    private Tache tache;
+    private Event event;
 
     public Alarme() {
     }
@@ -55,13 +55,13 @@ public class Alarme implements IAlarme {
     }
 
     @Override
-    public Tache getTache() {
-        return tache;
+    public Event getEvent() {
+        return event;
     }
 
     @Override
-    public void setTache(Tache tache) {
-        this.tache = tache;
+    public void setEvent(Event event) {
+        this.event = event;
     }
 
     @Override
@@ -76,19 +76,21 @@ public class Alarme implements IAlarme {
     @Override
     public void ring() {
         if (this.status == Status.ACTIVE) {
-            System.out.println(this.tache.getTitle() + " à faire !");
+            System.out.println(this.event.getTitle() + " à faire !");
 
-            for (String step : this.tache.getSteps()) {
-                System.out.println("Étape: " + step);
+            if (event instanceof Tache tache) {
+                for (String step : tache.getSteps()) {
+                    System.out.println("Étape: " + step);
+                }
+                tache.setStatus(StatusTache.DONE);
             }
-            this.tache.setStatus(StatusTache.DONE);
         }
     }
 
     @Override
     public void eventRemove() {
-        if (this.tache != null) {
-            this.tache = null;
+        if (this.event != null) {
+            this.event = null;
             System.out.println("Tâche associée à l'alarme supprimée.");
         } else {
             System.out.println("Aucune tâche associée à supprimer.");
