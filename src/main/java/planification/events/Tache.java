@@ -1,22 +1,12 @@
-package planification;
+package planification.events;
 
-public class Tache {
+public class Tache extends Event {
 
-    private String title;
     private String[] steps;
     private StatusTache status;
-    private Alarme alarme;
     private final static int STEPSLENGTH = 10;
 
     public Tache() {
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String[] getSteps() {
@@ -39,23 +29,6 @@ public class Tache {
         this.status = status;
     }
 
-    public Alarme getAlarme() {
-        return alarme;
-    }
-
-    public void setAlarme(Alarme alarme) {
-        this.alarme = alarme;
-    }
-
-    public void removeAlarme() {
-        if (this.alarme != null) {
-            this.alarme = null;
-            System.out.println("Alarme associée à la tâche supprimée.");
-        } else {
-            System.out.println("Aucune alarme associée à cette tâche.");
-        }
-    }
-
     public void toggleStatus() {
         if (this.status == StatusTache.DONE) {
             this.status = StatusTache.TODO;
@@ -64,9 +37,4 @@ public class Tache {
         }
     }
 
-}
-
-enum StatusTache {
-    DONE,
-    TODO,
 }
