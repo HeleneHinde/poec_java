@@ -104,18 +104,24 @@ enum Status {
 }
 
 enum Couleur {
-    rouge("important"),
-    vert("pense_bête"),
-    jaune("attention"),
-    bleu("classique");
+    rouge("important", 1),
+    vert("pense_bête", 4),
+    jaune("attention", 2),
+    bleu("classique", 3);
 
     private final String description;
+    private final int priority;
 
-    Couleur(String description) {
+    Couleur(String description, int priority) {
         this.description = description;
+        this.priority = priority;
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public int getPriority() {
+        return priority;
     }
 }
