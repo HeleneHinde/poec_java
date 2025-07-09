@@ -20,8 +20,10 @@ public class Voyage implements Serializable {
     public Voyage() {
     }
 
-    public Voyage(Instant momentDepart, Instant momentArrivee, Gare gareDepart, Gare gareArrivee, int retardMinutes,
+    public Voyage(String numero, Instant momentDepart, Instant momentArrivee, Gare gareDepart, Gare gareArrivee,
+            int retardMinutes,
             ITrain train, Statut etat) {
+        this.numero = numero;
         this.momentDepart = momentDepart;
         this.momentArrivee = momentArrivee;
         this.gareDepart = gareDepart;
