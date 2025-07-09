@@ -77,7 +77,7 @@ public class VoyageService {
         return trainDAO.deleteTrain(train.getNumero());
     }
 
-        public boolean supprimerGareEtVoyage(Gare gare) {
+    public boolean supprimerGareEtVoyage(Gare gare) {
 
         if (gare.getVoyages() != null && !gare.getVoyages().isEmpty()) {
             gare.getVoyages().forEach(voyage -> {
@@ -86,6 +86,20 @@ public class VoyageService {
         }
 
         return trainDAO.deleteTrain(gare.getCodeGare());
+    }
+
+    public boolean supprimerVoyage(Voyage voyage) {
+        if (voyage.getTrain() != null) {
+            voyage.getTrain().getVoyages().remove(voyage);
+        }
+        if (voyage.getGareArrivee() != null) {
+            voyage.getGareArrivee().getVoyages().remove(voyage);
+        }
+
+        if (voyage.getGareDepart() != null) {
+            voyage.getGareDepart().getVoyages().remove(voyage);
+        }
+        return voyageDAO.deleteVoyage(voyage.getNumero());
     }
 
 }

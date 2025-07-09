@@ -99,9 +99,8 @@ public class Voyage implements Serializable {
 
     public String getRetard() {
         if (retardMinutes > 0) {
-            return "";
-
+            return "Retard prévu de " + retardMinutes + " minutes.";
         }
-        return "";
+        return "Train à l'heure.";
     }
 }
