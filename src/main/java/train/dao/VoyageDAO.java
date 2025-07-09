@@ -7,7 +7,7 @@ import train.bo.Voyage;
 
 public class VoyageDAO {
 
-    private List<Voyage> voyages = new ArrayList<>();
+    private final List<Voyage> voyages = new ArrayList<>();
 
     private static VoyageDAO instance;
 

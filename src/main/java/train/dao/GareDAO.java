@@ -7,7 +7,7 @@ import train.bo.Gare;
 
 public class GareDAO {
 
-    private List<Gare> gares = new ArrayList<>();
+    private final List<Gare> gares = new ArrayList<>();
 
     private static GareDAO instance;
 

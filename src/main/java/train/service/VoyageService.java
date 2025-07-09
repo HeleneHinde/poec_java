@@ -16,9 +16,9 @@ import train.dao.VoyageDAO;
 
 public class VoyageService {
 
-    private TrainDAO trainDAO;
-    private GareDAO gareDAO;
-    private VoyageDAO voyageDAO;
+    private final TrainDAO trainDAO;
+    private final GareDAO gareDAO;
+    private final VoyageDAO voyageDAO;
 
     public VoyageService() {
         trainDAO = TrainDAO.getInstance();

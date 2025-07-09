@@ -19,6 +19,7 @@ public abstract class Train implements ITrain {
         this.typeTrain = typeTrain;
     }
 
+    @Override
     public String getNumero() {
         return numero;
     }
@@ -35,6 +36,7 @@ public abstract class Train implements ITrain {
         this.typeTrain = typeTrain;
     }
 
+    @Override
     public List<Voyage> getVoyages() {
         return voyages;
     }

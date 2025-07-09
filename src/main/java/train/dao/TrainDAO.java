@@ -7,7 +7,7 @@ import train.bo.train.Train;
 
 public class TrainDAO {
 
-    private List<Train> trains = new ArrayList<>();
+    private final List<Train> trains = new ArrayList<>();
 
     private static TrainDAO instance;
 

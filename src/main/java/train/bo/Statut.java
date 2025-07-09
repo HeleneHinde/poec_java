@@ -8,7 +8,7 @@ public enum Statut {
     EN_ROUTE("En route"),
     ARRIVE("Arrivé");
 
-    private String description;
+    private final String description;
 
     private Statut(String description) {
         this.description = description;
