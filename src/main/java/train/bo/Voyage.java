@@ -86,4 +86,11 @@ public class Voyage implements Serializable {
         this.etat = etat;
     }
 
+    public String getRetard() {
+        if (retardMinutes > 0) {
+            return "";
+
+        }
+        return "";
+    }
 }
