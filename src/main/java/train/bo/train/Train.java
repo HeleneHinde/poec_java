@@ -1,9 +1,15 @@
 package train.bo.train;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import train.bo.Voyage;
+
 public abstract class Train implements ITrain {
 
     private String numero;
     private TypeTrain typeTrain;
+    private List<Voyage> voyages = new ArrayList<>();
 
     public Train() {
     }
@@ -29,4 +35,11 @@ public abstract class Train implements ITrain {
         this.typeTrain = typeTrain;
     }
 
+    public List<Voyage> getVoyages() {
+        return voyages;
+    }
+
+    public void setVoyages(List<Voyage> voyages) {
+        this.voyages = voyages;
+    }
 }
