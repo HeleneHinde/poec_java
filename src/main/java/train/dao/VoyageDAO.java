@@ -6,32 +6,76 @@ import java.util.List;
 import train.bo.Voyage;
 
 public class VoyageDAO {
-    
-    // This class will handle the data access for Voyage entities.
-    // It will interact with the database or any data source to perform CRUD operations on Voyage objects.
+
+    private List<Voyage> voyages = new ArrayList<>();
+
+    private static VoyageDAO instance;
+
+    public synchronized static VoyageDAO getInstance() {
+        if (instance == null) {
+            instance = new VoyageDAO();
+        }
+        return instance;
+    }
 
     public boolean createVoyage(Voyage voyage) {
-        // Logic to create a new Voyage in the database
-        return true; // Placeholder return value
+        try {
+            this.voyages.add(voyage);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Une erreur est survenue lors de l'ajout du voyage.");
+
+        }
+        return false;
     }
 
     public boolean updateVoyage(Voyage voyage) {
-        // Logic to update an existing Voyage in the database
-        return true; // Placeholder return value
+        try {
+
+            if (voyages.contains(voyage)) {
+                int index = voyages.indexOf(voyage);
+                voyages.set(index, voyage);
+                return true;
+            }
+
+            return false;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Une erreur est survenue lors de la mise à jour du voyage.");
+        }
+        return false;
     }
 
     public boolean deleteVoyage(String voyageId) {
-        // Logic to delete a Voyage from the database using its ID
-        return true; // Placeholder return value
+        try {
+            this.voyages.stream()
+                    .filter(voyage -> voyage.getNumero().equals(voyageId))
+                    .findFirst()
+                    .ifPresent(voyage -> voyages.remove(voyage));
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Une erreur est survenue lors de la suppression du voyage.");
+
+        }
+        return false;
     }
 
     public Voyage getVoyageById(String voyageId) {
-        // Logic to retrieve a Voyage by its ID from the database
-        return null; // Placeholder return value
+        try {
+            return voyages.stream().filter(voyage -> voyage.getNumero().equals(voyageId))
+                    .findFirst().orElse(null);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            System.err.println("Une erreur est survenue lors de la selection du voyage.");
+
+        }
+        return null;
     }
 
     public List<Voyage> getAllVoyages() {
-        // Logic to retrieve all Voyages from the database
-        return new ArrayList<>(); // Placeholder return value
+        return voyages;
     }
 }

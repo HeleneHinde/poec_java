@@ -7,33 +7,81 @@ import train.bo.train.Train;
 
 public class TrainDAO {
 
-    // This class is responsible for data access operations related to trains.
-    // It will contain methods to interact with the database or any data source
-    // to perform CRUD operations on train entities.
+    private List<Train> trains = new ArrayList<>();
+
+    private static TrainDAO instance;
+
+    TrainDAO() {
+    }
+
+    public synchronized static TrainDAO getInstance() {
+        if (instance == null) {
+            instance = new TrainDAO();
+        }
+        return instance;
+    }
 
     public boolean createTrain(Train train) {
-        // Logic to create a new train in the database
-        return true; // Placeholder return value
+        try {
+            this.trains.add(train);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Une erreur est survenue lors de l'ajout du train.");
+
+        }
+        return false;
     }
 
     public boolean updateTrain(Train train) {
-        // Logic to update an existing train in the database
-        return true; // Placeholder return value
+        try {
+
+            if (trains.contains(train)) {
+                int index = trains.indexOf(train);
+                trains.set(index, train);
+                return true;
+            }
+
+            return false;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Une erreur est survenue lors de la mise à jour du train.");
+
+        }
+        return false;
     }
 
     public boolean deleteTrain(String trainNumber) {
-        // Logic to delete a train from the database using its number
-        return true; // Placeholder return value
+        try {
+            this.trains.stream()
+                    .filter(train -> train.getNumero().equals(trainNumber))
+                    .findFirst()
+                    .ifPresent(train -> trains.remove(train));
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Une erreur est survenue lors de la suppression du train.");
+
+        }
+        return false;
     }
 
     public List<Train> getAllTrains() {
-        // Logic to retrieve all trains from the database
-        return new ArrayList<>(); // Placeholder return value
+        return trains;
     }
 
     public Train getTrainByNumber(String trainNumber) {
-        // Logic to retrieve a train by its number from the database
-        return null; // Placeholder return value
+        try {
+            return trains.stream().filter(train -> train.getNumero().equals(trainNumber))
+                    .findFirst().orElse(null);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            System.err.println("Une erreur est survenue lors de la selection du train.");
+
+        }
+        return null;
+
     }
 
 }
