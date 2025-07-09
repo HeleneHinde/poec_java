@@ -1,14 +1,17 @@
 package train.bo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Gare implements Serializable{
+public class Gare implements Serializable {
 
     private static final long serialVersionUID = 2L;
     private String codeGare;
     private String nom;
     private String commune;
     private String pays;
+    List<Voyage> voyages = new ArrayList<>();
 
     public Gare() {
     }
@@ -50,6 +53,14 @@ public class Gare implements Serializable{
 
     public void setPays(String pays) {
         this.pays = pays;
+    }
+
+    public List<Voyage> getVoyages() {
+        return voyages;
+    }
+
+    public void setVoyages(List<Voyage> voyages) {
+        this.voyages = voyages;
     }
 
 }
