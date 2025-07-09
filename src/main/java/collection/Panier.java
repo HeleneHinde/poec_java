@@ -17,12 +17,20 @@ public class Panier {
         // Création d'une pomme
         Pomme pomme = new Pomme("Rouge", "Pomme Gala", 120.0f);
 
-        Panier.fruits.add(poire);
-        Panier.fruits.add(pomme);
+        panier.ajouterFruit(poire);
+        panier.ajouterFruit(pomme);
 
         for (Fruit fruit : Panier.fruits) {
             System.out.println(fruit.toString());
         }
     }
+
+    public void ajouterFruit(Fruit fruit) {
+        Panier.fruits.add(fruit);
+    }
+    public void retirerFruit(Fruit fruit) {
+        Panier.fruits.remove(fruit);   
+    }
+    
     
 }
