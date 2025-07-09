@@ -1,0 +1,28 @@
+package collection;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Panier {
+
+    private static final List<Fruit> fruits = new ArrayList<>();
+
+    public static void main(String[] args) {
+
+        Panier panier = new Panier();
+
+        // Création d'une poire
+        Poire poire = new Poire("Jaune", "Poire Williams", 150.0f);
+
+        // Création d'une pomme
+        Pomme pomme = new Pomme("Rouge", "Pomme Gala", 120.0f);
+
+        Panier.fruits.add(poire);
+        Panier.fruits.add(pomme);
+
+        for (Fruit fruit : Panier.fruits) {
+            System.out.println(fruit.toString());
+        }
+    }
+    
+}

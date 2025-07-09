@@ -11,5 +11,10 @@ public class Poire extends Fruit{
     public Poire(String couleur, String nom, float poidsGramme) {
         super(couleur, nom, poidsGramme);
     }
+
+    @Override
+    public String toString() {
+        return "Poire - " + super.toString();
+    }
     
 }

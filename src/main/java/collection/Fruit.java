@@ -36,4 +36,9 @@ public class Fruit implements Serializable{
     public void setPoidsGramme(float poidsGramme) {
         this.poidsGramme = poidsGramme;
     } 
+
+    @Override
+    public String toString() {
+        return "Nom: " + this.getNom() + ", Couleur: " + this.getCouleur() + ", Poids: " + this.getPoidsGramme() + "g";
+    }
 }
