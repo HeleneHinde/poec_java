@@ -12,6 +12,12 @@ public class Fruit implements Serializable{
     public Fruit() {
     }
 
+    public Fruit(String couleur, String nom, float poidsGramme) {
+        this.couleur = couleur;
+        this.nom = nom;
+        this.poidsGramme = poidsGramme;
+    }
+
     public String getCouleur() {
         return couleur;
     }
