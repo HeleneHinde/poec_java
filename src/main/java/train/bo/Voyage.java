@@ -8,6 +8,7 @@ import train.bo.train.ITrain;
 public class Voyage implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private String numero;
     private Instant momentDepart;
     private Instant momentArrivee;
     private Gare gareDepart;
@@ -84,6 +85,14 @@ public class Voyage implements Serializable {
 
     public void setEtat(Statut etat) {
         this.etat = etat;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public String getRetard() {
