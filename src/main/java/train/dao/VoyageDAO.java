@@ -18,26 +18,26 @@ public class VoyageDAO {
         return instance;
     }
 
-    public boolean createVoyage(Voyage voyage) {
+    public Voyage createVoyage(Voyage voyage) {
         try {
             this.voyages.add(voyage);
-            return true;
+            return voyage;
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Une erreur est survenue lors de l'ajout du voyage.");
 
         }
-        return false;
+        return voyage;
     }
 
-    public boolean updateVoyage(Voyage voyage) {
+    public boolean updateVoyage(Voyage voyageAUpdate) {
         try {
 
-            if (voyages.contains(voyage)) {
-                int index = voyages.indexOf(voyage);
-                voyages.set(index, voyage);
-                return true;
-            }
+            this.voyages.stream()
+                    .filter(voyage -> voyage.getNumero().equals(voyageAUpdate.getNumero()))
+                    .findFirst()
+                    .ifPresent(voyage -> voyages.remove(voyage));
+            this.voyages.add(voyageAUpdate);
 
             return false;
 

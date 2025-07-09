@@ -22,26 +22,26 @@ public class GareDAO {
         return instance;
     }
 
-    public boolean createGare(Gare gare) {
+    public Gare createGare(Gare gare) {
         try {
             this.gares.add(gare);
-            return true;
+            return gare;
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Une erreur est survenue lors de l'ajout de la gare.");
 
         }
-        return false;
+        return gare;
     }
 
-    public boolean updateGare(Gare gare) {
+    public boolean updateGare(Gare gareAUpdate) {
         try {
 
-            if (gares.contains(gare)) {
-                int index = gares.indexOf(gare);
-                gares.set(index, gare);
-                return true;
-            }
+            this.gares.stream()
+                    .filter(gare -> gare.getCodeGare().equals(gareAUpdate.getCodeGare()))
+                    .findFirst()
+                    .ifPresent(gare -> gares.remove(gare));
+            this.gares.add(gareAUpdate);
 
             return false;
 

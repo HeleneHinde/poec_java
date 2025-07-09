@@ -21,26 +21,26 @@ public class TrainDAO {
         return instance;
     }
 
-    public boolean createTrain(Train train) {
+    public Train createTrain(Train train) {
         try {
             this.trains.add(train);
-            return true;
+            return train;
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Une erreur est survenue lors de l'ajout du train.");
 
         }
-        return false;
+        return train;
     }
 
-    public boolean updateTrain(Train train) {
+    public boolean updateTrain(Train trainAUpdate) {
         try {
 
-            if (trains.contains(train)) {
-                int index = trains.indexOf(train);
-                trains.set(index, train);
-                return true;
-            }
+            this.trains.stream()
+                    .filter(train -> train.getNumero().equals(trainAUpdate.getNumero()))
+                    .findFirst()
+                    .ifPresent(train -> trains.remove(train));
+            this.trains.add(trainAUpdate);
 
             return false;
 
