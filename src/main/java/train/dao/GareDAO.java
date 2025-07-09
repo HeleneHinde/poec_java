@@ -6,32 +6,55 @@ import java.util.List;
 import train.bo.Gare;
 
 public class GareDAO {
-    
-    // This class will handle the data access for Gare entities.
-    // It will include methods to create, read, update, and delete Gare records in the database.
+
+    private List<Gare> gares = new ArrayList<>();
+
 
     public boolean createGare(Gare gare) {
-        // Logic to create a new Gare in the database
-        return true; // Placeholder return value
+        try {
+            this.gares.add(gare);
+            return true; 
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; 
+        }
     }
 
     public boolean updateGare(Gare gare) {
-        // Logic to update an existing Gare in the database
-        return true; // Placeholder return value
+        try {
+
+            if (gares.contains(gare)) {
+                int index = gares.indexOf(gare);
+                gares.set(index, gare); 
+                return true; 
+            } 
+
+            return false; 
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; 
+        }
     }
 
     public boolean deleteGare(String codeGare) {
-        // Logic to delete a Gare from the database using its code
-        return true; // Placeholder return value
+        try {
+            this.gares.remove(codeGare);
+            return true; 
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; 
+        }
     }
 
     public Gare getGareByCode(String codeGare) {
-        // Logic to retrieve a Gare by its code from the database
-        return null; // Placeholder return value
+        return gares.stream()
+            .filter(gare -> gare.getCodeGare().equals(codeGare))
+            .findFirst()
+            .orElse(null); 
     }
 
     public List<Gare> getAllGares() {
-        // Logic to retrieve all Gares from the database
-        return new ArrayList<>(); // Placeholder return value
+        return gares;
     }
 }
