@@ -2,7 +2,7 @@ package collection;
 
 import java.io.Serializable;
 
-public class Fruit implements Serializable{
+public abstract class Fruit implements Serializable{
 
     private static final long serialVersionUID = 1L;
     protected String couleur;
@@ -37,8 +37,10 @@ public class Fruit implements Serializable{
         this.poidsGramme = poidsGramme;
     } 
 
+    protected abstract String getNomFruit();
+
     @Override
     public String toString() {
-        return "Nom: " + this.getNom() + ", Couleur: " + this.getCouleur() + ", Poids: " + this.getPoidsGramme() + "g";
+        return this.getNomFruit() + " Nom: " + this.getNom() + ", Couleur: " + this.getCouleur() + ", Poids: " + this.getPoidsGramme() + "g";
     }
 }

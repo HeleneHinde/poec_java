@@ -13,8 +13,8 @@ public class Poire extends Fruit{
     }
 
     @Override
-    public String toString() {
-        return "Poire - " + super.toString();
+    protected String getNomFruit() {
+        return "Poire";
     }
     
 }
