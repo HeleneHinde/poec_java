@@ -41,7 +41,7 @@ public class VoyageService {
     /*
      * ajout de voyage sans gare et train
      */
-    public Voyage ajouterVoyage(String numero, Instant dateDepart,
+    public Voyage ajouterVoyage(Instant dateDepart,
             Instant dateArrivee, int retardMinutes, Statut etat) {
 
         Gare gareDepart = this.ajouterGare("1", "Europole", "Rennes", "France");
@@ -49,18 +49,18 @@ public class VoyageService {
         ITrain trainVoyageur = this.ajouterTrainVoyageur("20", TypeTrain.TGV, 500);
 
         Voyage voyage = voyageDAO
-                .createVoyage(new Voyage(numero, dateDepart, dateArrivee, gareDepart, gareArrive, retardMinutes,
+                .createVoyage(new Voyage(dateDepart, dateArrivee, gareDepart, gareArrive, retardMinutes,
                         trainVoyageur, etat));
 
         trainVoyageur.getVoyages().add(voyage);
         return voyage;
     }
 
-    public Voyage ajouterVoyage(String numero, Gare gareDepart, Gare gareArrivee, Instant dateDepart,
+    public Voyage ajouterVoyage(Gare gareDepart, Gare gareArrivee, Instant dateDepart,
             Instant dateArrivee, int retardMinutes, ITrain train, Statut etat) {
 
         Voyage voyage = voyageDAO.createVoyage(
-                new Voyage(numero, dateDepart, dateArrivee, gareDepart, gareArrivee, retardMinutes, train, etat));
+                new Voyage(dateDepart, dateArrivee, gareDepart, gareArrivee, retardMinutes, train, etat));
 
         train.getVoyages().add(voyage);
         return voyage;

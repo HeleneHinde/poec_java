@@ -24,7 +24,7 @@ public class mainTrain {
         // Add a train voyageur
         //voyageService.ajouterTrainVoyageur("T002", TypeTrain.TGV, 300);
         // Add a voyage
-        Voyage voyage = voyageService.ajouterVoyage("V001", gareDepart, gareArrivee, Instant.now(), Instant.now(), 0, train,
+        Voyage voyage = voyageService.ajouterVoyage(gareDepart, gareArrivee, Instant.now(), Instant.now(), 0, train,
                 Statut.EN_ROUTE);
 
         // Print the voyage details
