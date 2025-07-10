@@ -13,6 +13,7 @@ import train.bo.train.TypeTrain;
 import train.dao.GareDAO;
 import train.dao.TrainDAO;
 import train.dao.VoyageDAO;
+import train.exception.ManqueInformationException;
 
 public class VoyageService {
 
@@ -42,7 +43,12 @@ public class VoyageService {
      * ajout de voyage sans gare et train
      */
     public Voyage ajouterVoyage(Instant dateDepart,
-            Instant dateArrivee, int retardMinutes, Statut etat) {
+            Instant dateArrivee, int retardMinutes, Statut etat) throws ManqueInformationException {
+
+        if (null == dateDepart || null == dateArrivee || null == etat) {
+            throw new ManqueInformationException(
+                    "Merci de bien vouloir renseigner toutes les informations nécessaires au voyage");
+        }
 
         Gare gareDepart = this.ajouterGare("1", "Europole", "Rennes", "France");
         Gare gareArrive = this.ajouterGare("2", "Montparnasse", "Paris", "France");
@@ -57,7 +63,12 @@ public class VoyageService {
     }
 
     public Voyage ajouterVoyage(Gare gareDepart, Gare gareArrivee, Instant dateDepart,
-            Instant dateArrivee, int retardMinutes, ITrain train, Statut etat) {
+            Instant dateArrivee, int retardMinutes, ITrain train, Statut etat) throws ManqueInformationException {
+
+        if (null == train || null == gareDepart || null == gareArrivee || null == dateDepart || null == dateArrivee || null == etat) {
+            throw new ManqueInformationException(
+                    "Merci de bien vouloir renseigner toutes les informations nécessaires au voyage");
+        }
 
         Voyage voyage = voyageDAO.createVoyage(
                 new Voyage(dateDepart, dateArrivee, gareDepart, gareArrivee, retardMinutes, train, etat));
