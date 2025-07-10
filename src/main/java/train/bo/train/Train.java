@@ -1,12 +1,14 @@
 package train.bo.train;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import train.bo.Voyage;
 
-public abstract class Train implements ITrain {
+public abstract class Train implements ITrain, Serializable {
 
+    private static final long serialVersionUID = 5L;
     private String numero;
     private TypeTrain typeTrain;
     private List<Voyage> voyages = new ArrayList<>();
