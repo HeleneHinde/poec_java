@@ -1,8 +1,6 @@
 package train.bo.train;
 
-import java.io.Serializable;
-
-public class TrainVoyageur extends Train implements Serializable {
+public class TrainVoyageur extends Train {
 
     private static final long serialVersionUID = 4L;
     private int nombreSieges;

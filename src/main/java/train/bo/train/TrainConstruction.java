@@ -1,8 +1,6 @@
 package train.bo.train;
 
-import java.io.Serializable;
-
-public class TrainConstruction extends Train implements Serializable {
+public class TrainConstruction extends Train {
 
     private static final long serialVersionUID = 3L;
     private float capaciteTonnes;
