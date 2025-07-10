@@ -86,6 +86,7 @@ public class GareDAO {
     }
 
     public List<Gare> getAllGares() {
-        return gares;
+        List<Gare> garesARetourner = List.copyOf(gares);
+        return garesARetourner;
     }
 }

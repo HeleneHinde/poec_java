@@ -76,6 +76,7 @@ public class VoyageDAO {
     }
 
     public List<Voyage> getAllVoyages() {
-        return voyages;
+        List<Voyage> voyagesARetourner = List.copyOf(voyages);
+        return voyagesARetourner;
     }
 }

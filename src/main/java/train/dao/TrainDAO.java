@@ -68,7 +68,8 @@ public class TrainDAO {
     }
 
     public List<Train> getAllTrains() {
-        return trains;
+        List<Train> trainsARetourner = List.copyOf(trains);
+        return trainsARetourner;
     }
 
     public Train getTrainByNumber(String trainNumber) {
