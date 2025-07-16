@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,20 +43,50 @@
         <h1>Hello from Java EE with JSP!</h1>
         
         <div class="info">
-            <p><strong><%= request.getAttribute("message") %></strong></p>
+            <p><strong>${message}</strong></p>
             <p>Cette page est générée par une JSP appelée depuis HelloServlet.</p>
-            <p>Bonjour <%= request.getAttribute("user") %> !</p>
+            <p>Bonjour ${user} !</p>
         </div>
         
         <p>Paramètres de la requête :</p>
         <ul>
-            <li>Méthode : <%= request.getMethod() %></li>
-            <li>URI : <%= request.getRequestURI() %></li>
-            <li>Serveur : <%= request.getServerName() %>:<%= request.getServerPort() %></li>
+            <li>Méthode : ${pageContext.request.method}</li>
+            <li>URI : ${pageContext.request.requestURI}</li>
+            <li>Serveur : ${pageContext.request.serverName}:${pageContext.request.serverPort}</li>
         </ul>
         
         <div class="current-time">
-            Généré le : <%= new java.util.Date() %>
+            <fmt:formatDate value="${now}" pattern="dd/MM/yyyy HH:mm:ss" />
+        </div>
+        
+        <%-- Déclaration d'une méthode --%>
+        <%! 
+            private String getBrowserInfo(String userAgent) {
+                if (userAgent.contains("Firefox")) return "Firefox";
+                if (userAgent.contains("Chrome")) return "Chrome";
+                if (userAgent.contains("Safari")) return "Safari";
+                return "Autre";
+            }
+        %>
+        
+        <div class="info">
+            <h3>Informations supplémentaires :</h3>
+            <ul>
+                <li>Navigateur : <%= getBrowserInfo(request.getHeader("User-Agent")) %></li>
+                <li>Session ID : ${pageContext.session.id}</li>
+                <li>Contexte : ${pageContext.servletContext.contextPath}</li>
+            </ul>
+            
+            <%-- Condition avec JSTL --%>
+            <c:if test="${not empty param.name}">
+                <p>Paramètre 'name' reçu : <strong>${param.name}</strong></p>
+            </c:if>
+            
+            <%-- Boucle avec JSTL --%>
+            <p>Compteur :</p>
+            <c:forEach var="i" begin="1" end="5">
+                <span style="color: #333;">★</span>
+            </c:forEach>
         </div>
     </div>
 </body>

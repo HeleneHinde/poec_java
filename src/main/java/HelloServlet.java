@@ -17,6 +17,7 @@ public class HelloServlet extends HttpServlet {
         // Ajouter des attributs à la requête pour la JSP
         request.setAttribute("message", "Bienvenue dans votre première application JEE !");
         request.setAttribute("user", "Utilisateur");
+        request.setAttribute("now", new java.util.Date());
         
         // Rediriger vers la JSP
         RequestDispatcher dispatcher = request.getRequestDispatcher("/hello.jsp");
