@@ -12,6 +12,11 @@
 .vscode/
 .history/
 
+# Vim temporary files
+*.swp
+*.swo
+*.un~
+
 # Logs
 *.log
 
